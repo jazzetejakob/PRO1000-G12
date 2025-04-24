@@ -1,1 +1,109 @@
 
+<div style="
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8f0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    margin: auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+">
+    <h2 style="color: #2c7a2c;">🌱 Karbonutslipp Kalkulator</h2>
+
+    <!-- Dropdown-meny for valg av språk -->
+    <select id="languageSelect" style="
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #2c7a2c;
+        background-color: #ffffff;
+        color: #2c7a2c;
+        cursor: pointer;
+        outline: none;
+    ">
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="c">C</option>
+        <option value="javascript">JavaScript</option>
+        <option value="ruby">Ruby</option>
+        <option value="php">PHP</option>
+        <option value="swift">Swift</option>
+        <option value="kotlin">Kotlin</option>
+        <option value="rust">Rust</option>
+        <option value="go">Go</option>
+    </select>
+
+    <br><br>
+
+    <!-- Input-felt for brukerens tekst -->
+    <input type="text" id="userInput" placeholder="Skriv kode her..." 
+        style="
+        padding: 10px;
+        font-size: 16px;
+        width: 80%;
+        border-radius: 5px;
+        border: 1px solid #2c7a2c;
+        outline: none;
+        ">
+
+    <br><br>
+
+    <!-- Knapp for å vise karbonutslippet -->
+    <button onclick="beregnKarbon()" style="
+        padding: 12px 25px;
+        font-size: 16px;
+        color: white;
+        background-color: #2c7a2c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    " onmouseover="this.style.background='#238623'" 
+       onmouseout="this.style.background='#2c7a2c'">
+        Beregn CO₂-utslipp
+    </button>
+
+    <br><br>
+
+    <!-- Output-felt for svaret -->
+    <input type="text" id="outputField" readonly 
+        style="
+        padding: 10px;
+        font-size: 16px;
+        width: 85%;
+        background: #e6f5e6;
+        color: #2c7a2c;
+        border-radius: 5px;
+        border: 1px solid #2c7a2c;
+        text-align: center;
+        outline: none;
+        font-weight: bold;
+        ">
+
+</div>
+
+<script>
+function beregnKarbon() {
+    var language = document.getElementById("languageSelect").value;
+    var userInput = document.getElementById("userInput").value;
+    var outputField = document.getElementById("outputField");
+
+    // Generer et tilfeldig karbonutslipp mellom 0.1g og 15g CO₂
+    var karbonUtslipp = (Math.random() * (15 - 0.1) + 0.1).toFixed(2);
+
+    // Respons basert på input
+    var response;
+    if (userInput.trim() === "") {
+        response = "⚠️ Skriv inn litt kode først!";
+    } else {
+        response = `✅ Din ${language}-kode genererer ${karbonUtslipp}g CO₂. 🌱`;
+    }
+
+    
+    outputField.value = response;
+}
+</script>
+
+
+
